@@ -6,9 +6,9 @@
 
 Struct:
 The Item struct is used to represent each resource with attributes:
- name: The resource's identifier.
- weight: The cost or requirement of the resource.
- value: The benefit or utility of the resource.
+ #### name: The resource's identifier.
+ #### weight: The cost or requirement of the resource.
+ #### value: The benefit or utility of the resource.
 Vector:
      A vector<Item> is used to store multiple items, dynamically adjusting to the number of resources provided by the user.
 
