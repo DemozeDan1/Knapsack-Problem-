@@ -10,6 +10,43 @@ struct Item {
     int value;
 };
 
+// Function to get user input for number of items
+int getNumItems() {
+    int numItems;
+    cout << "Enter the number of items: ";
+    cin >> numItems;
+    return numItems;
+}
+
+// Function to get user input for an item
+Item getItem(int itemNumber) {
+    Item item;
+    cout << "Enter name for item " << itemNumber << ": ";
+    cin >> item.name;
+    cout << "Enter weight for item " << itemNumber << ": ";
+    cin >> item.weight;
+    cout << "Enter value for item " << itemNumber << ": ";
+    cin >> item.value;
+    return item;
+}
+
+// Function to get user input for items
+vector<Item> getItems(int numItems) {
+    vector<Item> items;
+    for (int i = 0; i < numItems; ++i) {
+        items.push_back(getItem(i + 1)); 
+    }
+    return items;
+}
+
+// Function to get knapsack capacity
+int getCapacity() {
+    int capacity;
+    cout << "Enter the knapsack capacity: ";
+    cin >> capacity;
+    return capacity;
+}
+
 // Knapsack algorithm (0/1 Knapsack)
 int knapsack(vector<Item>& items, int capacity) {
     int n = items.size();
@@ -28,30 +65,17 @@ int knapsack(vector<Item>& items, int capacity) {
     return dp[n][capacity];
 }
 
-int main() {
-    int numItems;
-    cout << "Enter the number of items: ";
-    cin >> numItems;
-
-    vector<Item> items;
-
-    for (int i = 0; i < numItems; ++i) {
-        Item item;
-        cout << "Enter name for item " << i + 1 << ": ";
-        cin >> item.name;
-        cout << "Enter weight for item " << i + 1 << ": ";
-        cin >> item.weight;
-        cout << "Enter value for item " << i + 1 << ": ";
-        cin >> item.value;
-        items.push_back(item);
-    }
-
-    int capacity;
-    cout << "Enter the knapsack capacity: ";
-    cin >> capacity;
-
-    int maxValue = knapsack(items, capacity);
-
+// Function to display the result
+void displayResult(int maxValue) {
     cout << "Maximum value that can be obtained: " << maxValue << endl;
+}
 
-    return 0;  }
+int main() {
+    int numItems = getNumItems();
+    vector<Item> items = getItems(numItems);
+    int capacity = getCapacity();
+    int maxValue = knapsack(items, capacity);
+    displayResult(maxValue);
+
+    return 0;
+}
