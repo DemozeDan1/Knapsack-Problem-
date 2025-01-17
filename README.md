@@ -6,9 +6,9 @@
 
 Struct:
 The Item struct is used to represent each resource with attributes:
-# name: The resource's identifier.
-# weight: The cost or requirement of the resource.
-# value: The benefit or utility of the resource.
+## name: The resource's identifier.
+## weight: The cost or requirement of the resource.
+## value: The benefit or utility of the resource.
 Vector:
      A vector<Item> is used to store multiple items, dynamically adjusting to the number of resources provided by the user.
 
@@ -19,5 +19,5 @@ A 2D DP table (dp) stores the maximum value achievable with a given capacity and
 
 3.Algorithm Effectiveness:
 
-# The DP algorithm ensures optimality by evaluating all combinations of items for a given capacity constraint.
-# The time complexity is 𝑂(𝑛 × 𝑊), where n is the number of items and 𝑊 is the capacity. This makes it efficient for moderate problem sizes.
+## The DP algorithm ensures optimality by evaluating all combinations of items for a given capacity constraint.
+## The time complexity is 𝑂(𝑛 × 𝑊), where n is the number of items and 𝑊 is the capacity. This makes it efficient for moderate problem sizes.
