@@ -24,10 +24,7 @@ Item getItem(int itemNumber) {
     cout << "Enter name for item " << itemNumber << ": ";
     cin >> item.name;
     cout << "Enter weight for item " << itemNumber << ": ";
-    cin >> item.weight;
-    cout << "Enter value for item " << itemNumber << ": ";
-    cin >> item.value;
-    return item;
+    cin >> 
 }
 
 // Function to get user input for items
@@ -57,13 +54,7 @@ pair<int, vector<int>> knapsack(vector<Item>& items, int capacity) {
         for (int w = 1; w <= capacity; ++w) {
             if (items[i - 1].weight <= w) {
                 if (items[i - 1].value + dp[i - 1][w - items[i - 1].weight] > dp[i - 1][w]) {
-                    dp[i][w] = items[i - 1].value + dp[i - 1][w - items[i - 1].weight];
-                    keep[i][w] = true;
-                } else {
-                    dp[i][w] = dp[i - 1][w];
-                }
-            } else {
-                dp[i][w] = dp[i - 1][w];
+                 
             }
         }
     }
