@@ -48,21 +48,36 @@ int getCapacity() {
 }
 
 // Knapsack algorithm (0/1 Knapsack)
-int knapsack(vector<Item>& items, int capacity) {
+pair<int, vector<int>> knapsack(vector<Item>& items, int capacity) {
     int n = items.size();
     vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
+    vector<vector<bool>> keep(n + 1, vector<bool>(capacity + 1, false));
 
     for (int i = 1; i <= n; ++i) {
         for (int w = 1; w <= capacity; ++w) {
             if (items[i - 1].weight <= w) {
-                dp[i][w] = max(dp[i - 1][w], items[i - 1].value + dp[i - 1][w - items[i - 1].weight]);
+                if (items[i - 1].value + dp[i - 1][w - items[i - 1].weight] > dp[i - 1][w]) {
+                    dp[i][w] = items[i - 1].value + dp[i - 1][w - items[i - 1].weight];
+                    keep[i][w] = true;
+                } else {
+                    dp[i][w] = dp[i - 1][w];
+                }
             } else {
                 dp[i][w] = dp[i - 1][w];
             }
         }
     }
 
-    return dp[n][capacity];
+    vector<int> selectedItems;
+    int w = capacity;
+    for (int i = n; i > 0; --i) {
+        if (keep[i][w]) {
+            selectedItems.push_back(i - 1); // Store index of the item
+            w -= items[i - 1].weight;
+        }
+    }
+
+    return {dp[n][capacity], selectedItems};
 }
 
 // Function to display the result
@@ -80,8 +95,10 @@ int main() {
     int numItems = getNumItems();
     vector<Item> items = getItems(numItems);
     int capacity = getCapacity();
-    int maxValue = knapsack(items, capacity);
-    displayResult(maxValue);
+
+    auto [maxValue, selectedItems] = knapsack(items, capacity);
+
+    displayResult(maxValue, items, selectedItems);
 
     return 0;
 }
