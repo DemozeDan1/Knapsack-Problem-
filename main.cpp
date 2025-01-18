@@ -66,8 +66,14 @@ int knapsack(vector<Item>& items, int capacity) {
 }
 
 // Function to display the result
-void displayResult(int maxValue) {
+void displayResult(int maxValue, const vector<Item>& items, const vector<int>& selectedItems) {
     cout << "Maximum value that can be obtained: " << maxValue << endl;
+    cout << "Selected items:" << endl;
+    for (int idx : selectedItems) {
+        cout << " - " << items[idx].name 
+             << " (Weight: " << items[idx].weight 
+             << ", Value: " << items[idx].value << ")" << endl;
+    }
 }
 
 int main() {
